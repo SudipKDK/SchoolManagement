@@ -1,0 +1,182 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+// ─── School (Tenant) ──────────────────────────────────────────────────────────
+
+model School {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users              UserRole[]
+  roles              Role[]
+  students           Student[]
+  teachers           Teacher[]
+  classrooms         Classroom[]
+  subjects           Subject[]
+  teacherAssignments TeacherSubjectClass[]
+}
+
+// ─── User ─────────────────────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  roles          UserRole[]
+  refreshTokens  RefreshToken[]
+  teacherProfile Teacher[]
+}
+
+// ─── RBAC ─────────────────────────────────────────────────────────────────────
+
+model Role {
+  id       String  @id @default(cuid())
+  name     String
+  schoolId String?
+
+  school      School?          @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  permissions RolePermission[]
+  users       UserRole[]
+
+  @@unique([schoolId, name])
+}
+
+model RolePermission {
+  id         String @id @default(cuid())
+  roleId     String
+  permission String
+
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permission])
+}
+
+model UserRole {
+  id       String  @id @default(cuid())
+  userId   String
+  roleId   String
+  schoolId String?
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role   Role    @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  school School? @relation(fields: [schoolId], references: [id], onDelete: SetNull)
+
+  @@unique([userId, roleId])
+}
+
+// ─── Auth ─────────────────────────────────────────────────────────────────────
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ─── Student ──────────────────────────────────────────────────────────────────
+
+model Student {
+  id          String    @id @default(cuid())
+  schoolId    String
+  classroomId String? // The class they belong to
+  firstName   String
+  lastName    String
+  email       String?
+  dateOfBirth DateTime?
+  enrolledAt  DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  school    School     @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  classroom Classroom? @relation(fields: [classroomId], references: [id], onDelete: SetNull)
+
+  @@unique([schoolId, email])
+  @@index([schoolId])
+  @@index([classroomId])
+}
+
+// ─── Academic Core (Phase 5) ──────────────────────────────────────────────────
+
+model Teacher {
+  id          String   @id @default(cuid())
+  schoolId    String
+  userId      String // Links back to the global User table
+  employeeId  String? // School-specific employee number
+  designation String? // e.g., "Senior Science Teacher"
+  joinedAt    DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  school      School                @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  user        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignments TeacherSubjectClass[]
+
+  // A user can only have ONE teacher profile per school
+  @@unique([schoolId, userId])
+  // Employee IDs must be unique within a school
+  @@unique([schoolId, employeeId])
+}
+
+model Classroom {
+  id        String   @id @default(cuid())
+  schoolId  String
+  name      String // e.g., "Grade 10-A"
+  capacity  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  school      School                @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  students    Student[]
+  assignments TeacherSubjectClass[]
+
+  // Class names must be unique per school
+  @@unique([schoolId, name])
+}
+
+model Subject {
+  id        String   @id @default(cuid())
+  schoolId  String
+  name      String // e.g., "Mathematics"
+  code      String? // e.g., "MATH101"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  school      School                @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  assignments TeacherSubjectClass[]
+
+  // Subject names/codes must be unique per school
+  @@unique([schoolId, name])
+  @@unique([schoolId, code])
+}
+
+model TeacherSubjectClass {
+  id          String   @id @default(cuid())
+  schoolId    String
+  teacherId   String
+  subjectId   String
+  classroomId String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  school    School    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  teacher   Teacher   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  subject   Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  classroom Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
+
+  // A teacher can't be assigned to teach the exact same subject to the exact same class twice
+  @@unique([schoolId, teacherId, subjectId, classroomId])
+}
