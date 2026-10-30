@@ -11,6 +11,7 @@ const schema = z.object({
     .transform((v) => v.split(',').map((o) => o.trim())),
   JWT_SECRET: z.string().min(1, 'JWT_SECRET is required'),
   JWT_REFRESH_SECRET: z.string().min(1, 'JWT_REFRESH_SECRET is required'),
+  REDIS_URL: z.string().default('redis://localhost:6379'),
 });
 
 export type Env = z.infer<typeof schema>;

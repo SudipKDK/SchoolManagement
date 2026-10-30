@@ -209,6 +209,7 @@ export type TeacherWhereInput = {
   school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   assignments?: Prisma.TeacherSubjectClassListRelationFilter
+  timetables?: Prisma.TimetablePeriodListRelationFilter
 }
 
 export type TeacherOrderByWithRelationInput = {
@@ -223,6 +224,7 @@ export type TeacherOrderByWithRelationInput = {
   school?: Prisma.SchoolOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
   assignments?: Prisma.TeacherSubjectClassOrderByRelationAggregateInput
+  timetables?: Prisma.TimetablePeriodOrderByRelationAggregateInput
 }
 
 export type TeacherWhereUniqueInput = Prisma.AtLeast<{
@@ -242,6 +244,7 @@ export type TeacherWhereUniqueInput = Prisma.AtLeast<{
   school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   assignments?: Prisma.TeacherSubjectClassListRelationFilter
+  timetables?: Prisma.TimetablePeriodListRelationFilter
 }, "id" | "schoolId_userId" | "schoolId_employeeId">
 
 export type TeacherOrderByWithAggregationInput = {
@@ -282,6 +285,7 @@ export type TeacherCreateInput = {
   school: Prisma.SchoolCreateNestedOneWithoutTeachersInput
   user: Prisma.UserCreateNestedOneWithoutTeacherProfileInput
   assignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutTeacherInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherUncheckedCreateInput = {
@@ -294,6 +298,7 @@ export type TeacherUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutTeacherInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherUpdateInput = {
@@ -306,6 +311,7 @@ export type TeacherUpdateInput = {
   school?: Prisma.SchoolUpdateOneRequiredWithoutTeachersNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutTeacherProfileNestedInput
   assignments?: Prisma.TeacherSubjectClassUpdateManyWithoutTeacherNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherUncheckedUpdateInput = {
@@ -318,6 +324,7 @@ export type TeacherUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutTeacherNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherCreateManyInput = {
@@ -507,6 +514,20 @@ export type TeacherUpdateOneRequiredWithoutAssignmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TeacherUpdateToOneWithWhereWithoutAssignmentsInput, Prisma.TeacherUpdateWithoutAssignmentsInput>, Prisma.TeacherUncheckedUpdateWithoutAssignmentsInput>
 }
 
+export type TeacherCreateNestedOneWithoutTimetablesInput = {
+  create?: Prisma.XOR<Prisma.TeacherCreateWithoutTimetablesInput, Prisma.TeacherUncheckedCreateWithoutTimetablesInput>
+  connectOrCreate?: Prisma.TeacherCreateOrConnectWithoutTimetablesInput
+  connect?: Prisma.TeacherWhereUniqueInput
+}
+
+export type TeacherUpdateOneRequiredWithoutTimetablesNestedInput = {
+  create?: Prisma.XOR<Prisma.TeacherCreateWithoutTimetablesInput, Prisma.TeacherUncheckedCreateWithoutTimetablesInput>
+  connectOrCreate?: Prisma.TeacherCreateOrConnectWithoutTimetablesInput
+  upsert?: Prisma.TeacherUpsertWithoutTimetablesInput
+  connect?: Prisma.TeacherWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TeacherUpdateToOneWithWhereWithoutTimetablesInput, Prisma.TeacherUpdateWithoutTimetablesInput>, Prisma.TeacherUncheckedUpdateWithoutTimetablesInput>
+}
+
 export type TeacherCreateWithoutSchoolInput = {
   id?: string
   employeeId?: string | null
@@ -516,6 +537,7 @@ export type TeacherCreateWithoutSchoolInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTeacherProfileInput
   assignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutTeacherInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherUncheckedCreateWithoutSchoolInput = {
@@ -527,6 +549,7 @@ export type TeacherUncheckedCreateWithoutSchoolInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutTeacherInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherCreateOrConnectWithoutSchoolInput = {
@@ -578,6 +601,7 @@ export type TeacherCreateWithoutUserInput = {
   updatedAt?: Date | string
   school: Prisma.SchoolCreateNestedOneWithoutTeachersInput
   assignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutTeacherInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherUncheckedCreateWithoutUserInput = {
@@ -589,6 +613,7 @@ export type TeacherUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutTeacherInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherCreateOrConnectWithoutUserInput = {
@@ -626,6 +651,7 @@ export type TeacherCreateWithoutAssignmentsInput = {
   updatedAt?: Date | string
   school: Prisma.SchoolCreateNestedOneWithoutTeachersInput
   user: Prisma.UserCreateNestedOneWithoutTeacherProfileInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherUncheckedCreateWithoutAssignmentsInput = {
@@ -637,6 +663,7 @@ export type TeacherUncheckedCreateWithoutAssignmentsInput = {
   joinedAt?: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutTeacherInput
 }
 
 export type TeacherCreateOrConnectWithoutAssignmentsInput = {
@@ -664,6 +691,7 @@ export type TeacherUpdateWithoutAssignmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   school?: Prisma.SchoolUpdateOneRequiredWithoutTeachersNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutTeacherProfileNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherUncheckedUpdateWithoutAssignmentsInput = {
@@ -675,6 +703,71 @@ export type TeacherUncheckedUpdateWithoutAssignmentsInput = {
   joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutTeacherNestedInput
+}
+
+export type TeacherCreateWithoutTimetablesInput = {
+  id?: string
+  employeeId?: string | null
+  designation?: string | null
+  joinedAt?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  school: Prisma.SchoolCreateNestedOneWithoutTeachersInput
+  user: Prisma.UserCreateNestedOneWithoutTeacherProfileInput
+  assignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutTeacherInput
+}
+
+export type TeacherUncheckedCreateWithoutTimetablesInput = {
+  id?: string
+  schoolId: string
+  userId: string
+  employeeId?: string | null
+  designation?: string | null
+  joinedAt?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutTeacherInput
+}
+
+export type TeacherCreateOrConnectWithoutTimetablesInput = {
+  where: Prisma.TeacherWhereUniqueInput
+  create: Prisma.XOR<Prisma.TeacherCreateWithoutTimetablesInput, Prisma.TeacherUncheckedCreateWithoutTimetablesInput>
+}
+
+export type TeacherUpsertWithoutTimetablesInput = {
+  update: Prisma.XOR<Prisma.TeacherUpdateWithoutTimetablesInput, Prisma.TeacherUncheckedUpdateWithoutTimetablesInput>
+  create: Prisma.XOR<Prisma.TeacherCreateWithoutTimetablesInput, Prisma.TeacherUncheckedCreateWithoutTimetablesInput>
+  where?: Prisma.TeacherWhereInput
+}
+
+export type TeacherUpdateToOneWithWhereWithoutTimetablesInput = {
+  where?: Prisma.TeacherWhereInput
+  data: Prisma.XOR<Prisma.TeacherUpdateWithoutTimetablesInput, Prisma.TeacherUncheckedUpdateWithoutTimetablesInput>
+}
+
+export type TeacherUpdateWithoutTimetablesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  school?: Prisma.SchoolUpdateOneRequiredWithoutTeachersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTeacherProfileNestedInput
+  assignments?: Prisma.TeacherSubjectClassUpdateManyWithoutTeacherNestedInput
+}
+
+export type TeacherUncheckedUpdateWithoutTimetablesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherCreateManySchoolInput = {
@@ -696,6 +789,7 @@ export type TeacherUpdateWithoutSchoolInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTeacherProfileNestedInput
   assignments?: Prisma.TeacherSubjectClassUpdateManyWithoutTeacherNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherUncheckedUpdateWithoutSchoolInput = {
@@ -707,6 +801,7 @@ export type TeacherUncheckedUpdateWithoutSchoolInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutTeacherNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherUncheckedUpdateManyWithoutSchoolInput = {
@@ -738,6 +833,7 @@ export type TeacherUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   school?: Prisma.SchoolUpdateOneRequiredWithoutTeachersNestedInput
   assignments?: Prisma.TeacherSubjectClassUpdateManyWithoutTeacherNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherUncheckedUpdateWithoutUserInput = {
@@ -749,6 +845,7 @@ export type TeacherUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutTeacherNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
 export type TeacherUncheckedUpdateManyWithoutUserInput = {
@@ -768,10 +865,12 @@ export type TeacherUncheckedUpdateManyWithoutUserInput = {
 
 export type TeacherCountOutputType = {
   assignments: number
+  timetables: number
 }
 
 export type TeacherCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignments?: boolean | TeacherCountOutputTypeCountAssignmentsArgs
+  timetables?: boolean | TeacherCountOutputTypeCountTimetablesArgs
 }
 
 /**
@@ -791,6 +890,13 @@ export type TeacherCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.T
   where?: Prisma.TeacherSubjectClassWhereInput
 }
 
+/**
+ * TeacherCountOutputType without action
+ */
+export type TeacherCountOutputTypeCountTimetablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TimetablePeriodWhereInput
+}
+
 
 export type TeacherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -804,6 +910,7 @@ export type TeacherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   assignments?: boolean | Prisma.Teacher$assignmentsArgs<ExtArgs>
+  timetables?: boolean | Prisma.Teacher$timetablesArgs<ExtArgs>
   _count?: boolean | Prisma.TeacherCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teacher"]>
 
@@ -849,6 +956,7 @@ export type TeacherInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   assignments?: boolean | Prisma.Teacher$assignmentsArgs<ExtArgs>
+  timetables?: boolean | Prisma.Teacher$timetablesArgs<ExtArgs>
   _count?: boolean | Prisma.TeacherCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TeacherIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -866,6 +974,7 @@ export type $TeacherPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     school: Prisma.$SchoolPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
     assignments: Prisma.$TeacherSubjectClassPayload<ExtArgs>[]
+    timetables: Prisma.$TimetablePeriodPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1273,6 +1382,7 @@ export interface Prisma__TeacherClient<T, Null = never, ExtArgs extends runtime.
   school<T extends Prisma.SchoolDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SchoolDefaultArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   assignments<T extends Prisma.Teacher$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Teacher$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherSubjectClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  timetables<T extends Prisma.Teacher$timetablesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Teacher$timetablesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimetablePeriodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1732,6 +1842,30 @@ export type Teacher$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.TeacherSubjectClassScalarFieldEnum | Prisma.TeacherSubjectClassScalarFieldEnum[]
+}
+
+/**
+ * Teacher.timetables
+ */
+export type Teacher$timetablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TimetablePeriod
+   */
+  select?: Prisma.TimetablePeriodSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TimetablePeriod
+   */
+  omit?: Prisma.TimetablePeriodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TimetablePeriodInclude<ExtArgs> | null
+  where?: Prisma.TimetablePeriodWhereInput
+  orderBy?: Prisma.TimetablePeriodOrderByWithRelationInput | Prisma.TimetablePeriodOrderByWithRelationInput[]
+  cursor?: Prisma.TimetablePeriodWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TimetablePeriodScalarFieldEnum | Prisma.TimetablePeriodScalarFieldEnum[]
 }
 
 /**

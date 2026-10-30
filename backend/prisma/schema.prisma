@@ -22,6 +22,9 @@ model School {
   classrooms         Classroom[]
   subjects           Subject[]
   teacherAssignments TeacherSubjectClass[]
+  academicYears      AcademicYear[]
+  terms              Term[]
+  timetables         TimetablePeriod[]
 }
 
 // ─── User ─────────────────────────────────────────────────────────────────────
@@ -124,6 +127,7 @@ model Teacher {
   school      School                @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   user        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   assignments TeacherSubjectClass[]
+  timetables  TimetablePeriod[]
 
   // A user can only have ONE teacher profile per school
   @@unique([schoolId, userId])
@@ -132,31 +136,37 @@ model Teacher {
 }
 
 model Classroom {
-  id        String   @id @default(cuid())
-  schoolId  String
-  name      String // e.g., "Grade 10-A"
-  capacity  Int?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String                @id @default(cuid())
+  schoolId       String
+  academicYearId String?
+  name           String // e.g., "Grade 10-A"
+  capacity       Int?
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
 
-  school      School                @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-  students    Student[]
-  assignments TeacherSubjectClass[]
+  school       School                @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  academicYear AcademicYear?         @relation(fields: [academicYearId], references: [id], onDelete: SetNull)
+  students     Student[]
+  assignments  TeacherSubjectClass[]
+  timetables   TimetablePeriod[]
 
   // Class names must be unique per school
   @@unique([schoolId, name])
+  @@index([schoolId])
+  @@index([academicYearId])
 }
 
 model Subject {
-  id        String   @id @default(cuid())
-  schoolId  String
-  name      String // e.g., "Mathematics"
-  code      String? // e.g., "MATH101"
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String                @id @default(cuid())
+  schoolId    String
+  name        String // e.g., "Mathematics"
+  code        String? // e.g., "MATH101"
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
 
   school      School                @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   assignments TeacherSubjectClass[]
+  timetables  TimetablePeriod[]
 
   // Subject names/codes must be unique per school
   @@unique([schoolId, name])
@@ -180,3 +190,76 @@ model TeacherSubjectClass {
   // A teacher can't be assigned to teach the exact same subject to the exact same class twice
   @@unique([schoolId, teacherId, subjectId, classroomId])
 }
+
+model AcademicYear {
+  id        String   @id @default(cuid())
+  schoolId  String
+  name      String // e.g., "2026-2027"
+  startDate DateTime
+  endDate   DateTime
+  isCurrent Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  school     School      @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  terms      Term[]
+  classrooms Classroom[]
+
+  @@unique([schoolId, name])
+  @@index([schoolId])
+}
+
+model Term {
+  id             String       @id @default(cuid())
+  schoolId       String
+  academicYearId String
+  name           String // e.g., "Term 1", "Semester 1"
+  startDate      DateTime
+  endDate        DateTime
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  school       School       @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  academicYear AcademicYear @relation(fields: [academicYearId], references: [id], onDelete: Cascade)
+
+  @@unique([academicYearId, name])
+  @@index([schoolId])
+  @@index([academicYearId])
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+model TimetablePeriod {
+  id          String    @id @default(cuid())
+  schoolId    String
+  classroomId String
+  subjectId   String
+  teacherId   String
+  dayOfWeek   DayOfWeek
+  startTime   String // "09:00"
+  endTime     String // "09:45"
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  school    School    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  classroom Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
+  subject   Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  teacher   Teacher   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  // A classroom cannot have two periods at the same time on the same day
+  @@unique([schoolId, classroomId, dayOfWeek, startTime])
+  // A teacher cannot be teaching two classes at the same time on the same day
+  @@unique([schoolId, teacherId, dayOfWeek, startTime])
+  @@index([schoolId])
+  @@index([classroomId])
+  @@index([teacherId])
+}
+

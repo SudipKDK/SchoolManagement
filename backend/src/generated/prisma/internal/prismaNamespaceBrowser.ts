@@ -61,7 +61,10 @@ export const ModelName = {
   Teacher: 'Teacher',
   Classroom: 'Classroom',
   Subject: 'Subject',
-  TeacherSubjectClass: 'TeacherSubjectClass'
+  TeacherSubjectClass: 'TeacherSubjectClass',
+  AcademicYear: 'AcademicYear',
+  Term: 'Term',
+  TimetablePeriod: 'TimetablePeriod'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -173,6 +176,7 @@ export type TeacherScalarFieldEnum = (typeof TeacherScalarFieldEnum)[keyof typeo
 export const ClassroomScalarFieldEnum = {
   id: 'id',
   schoolId: 'schoolId',
+  academicYearId: 'academicYearId',
   name: 'name',
   capacity: 'capacity',
   createdAt: 'createdAt',
@@ -205,6 +209,50 @@ export const TeacherSubjectClassScalarFieldEnum = {
 } as const
 
 export type TeacherSubjectClassScalarFieldEnum = (typeof TeacherSubjectClassScalarFieldEnum)[keyof typeof TeacherSubjectClassScalarFieldEnum]
+
+
+export const AcademicYearScalarFieldEnum = {
+  id: 'id',
+  schoolId: 'schoolId',
+  name: 'name',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isCurrent: 'isCurrent',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AcademicYearScalarFieldEnum = (typeof AcademicYearScalarFieldEnum)[keyof typeof AcademicYearScalarFieldEnum]
+
+
+export const TermScalarFieldEnum = {
+  id: 'id',
+  schoolId: 'schoolId',
+  academicYearId: 'academicYearId',
+  name: 'name',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TermScalarFieldEnum = (typeof TermScalarFieldEnum)[keyof typeof TermScalarFieldEnum]
+
+
+export const TimetablePeriodScalarFieldEnum = {
+  id: 'id',
+  schoolId: 'schoolId',
+  classroomId: 'classroomId',
+  subjectId: 'subjectId',
+  teacherId: 'teacherId',
+  dayOfWeek: 'dayOfWeek',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TimetablePeriodScalarFieldEnum = (typeof TimetablePeriodScalarFieldEnum)[keyof typeof TimetablePeriodScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -9,6 +9,8 @@ export const PERMISSION_CATALOG = {
   announcement: ["read", "list", "create", "update", "delete"],
   classroom: ["read", "list", "create", "update", "delete"],
   subject: ["read", "list", "create", "update", "delete"],
+  academicYear: ["read", "list", "create", "update", "delete"],
+  timetable: ["read", "list", "create", "update", "delete"],
 } as const satisfies Record<string, readonly string[]>;
 
 // derive a flat union type for type-safe permission strings

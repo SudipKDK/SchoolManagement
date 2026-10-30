@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import { AppError } from '../../../utils/AppError.js';
 import * as authRepo from '../repositories/auth.repositories.js';
-import { generateAccessToken, generateRefreshToken } from '../../../utils/jwt.js';
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../../../utils/jwt.js';
 import type { RegisterInput, LoginInput } from '../validators/auth.validator.js';
 import type { AuthResult } from '../types/auth.types.js';
 
@@ -84,3 +84,81 @@ export async function login(input: LoginInput): Promise<AuthResult> {
     tokens: { accessToken, refreshToken },
   };
 }
+
+export async function refresh(rawToken?: string): Promise<{ accessToken: string; refreshToken: string }> {
+  if (!rawToken) {
+    throw new AppError('UNAUTHORIZED', 'Refresh token is required', 401);
+  }
+
+  // 1. Verify cryptographic validity
+  let payload;
+  try {
+    payload = verifyRefreshToken(rawToken);
+  } catch {
+    throw new AppError('UNAUTHORIZED', 'Invalid or expired refresh token', 401);
+  }
+
+  // 2. Verify token exists in database (tracking and revocation check)
+  const storedToken = await authRepo.findRefreshToken(rawToken);
+  if (!storedToken) {
+    throw new AppError('UNAUTHORIZED', 'Refresh token has been revoked or is invalid', 401);
+  }
+
+  // 3. Verify user matches payload
+  if (storedToken.userId !== payload.id) {
+    throw new AppError('UNAUTHORIZED', 'Invalid token identity', 401);
+  }
+
+  // 4. Verify token is not expired in DB
+  if (new Date() > storedToken.expiresAt) {
+    await authRepo.deleteRefreshToken(rawToken);
+    throw new AppError('UNAUTHORIZED', 'Refresh token has expired', 401);
+  }
+
+  // 5. Issue new access token and rotated refresh token
+  const newAccessToken = generateAccessToken({ id: storedToken.userId });
+  const newRefreshToken = generateRefreshToken({ id: storedToken.userId });
+  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+
+  // 6. Atomically rotate the refresh token
+  await authRepo.rotateRefreshToken(rawToken, {
+    userId: storedToken.userId,
+    token: newRefreshToken,
+    expiresAt,
+  });
+
+  return {
+    accessToken: newAccessToken,
+    refreshToken: newRefreshToken,
+  };
+}
+
+export async function logout(rawToken?: string): Promise<void> {
+  if (!rawToken) return;
+
+  try {
+    await authRepo.deleteRefreshToken(rawToken);
+  } catch {
+    // If token does not exist or was already deleted, ignore safely
+  }
+}
+
+export async function getMe(userId: string) {
+  const user = await authRepo.findUserWithRoles(userId);
+  if (!user) {
+    throw new AppError('NOT_FOUND', 'User not found', 404);
+  }
+
+  return {
+    id: user.id,
+    email: user.email,
+    createdAt: user.createdAt,
+    roles: user.roles.map((r) => ({
+      role: r.role.name,
+      schoolId: r.schoolId,
+      schoolName: r.school?.name ?? null,
+      permissions: r.role.permissions.map((p) => p.permission),
+    })),
+  };
+}
+

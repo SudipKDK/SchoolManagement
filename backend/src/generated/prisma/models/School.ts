@@ -181,6 +181,9 @@ export type SchoolWhereInput = {
   classrooms?: Prisma.ClassroomListRelationFilter
   subjects?: Prisma.SubjectListRelationFilter
   teacherAssignments?: Prisma.TeacherSubjectClassListRelationFilter
+  academicYears?: Prisma.AcademicYearListRelationFilter
+  terms?: Prisma.TermListRelationFilter
+  timetables?: Prisma.TimetablePeriodListRelationFilter
 }
 
 export type SchoolOrderByWithRelationInput = {
@@ -195,6 +198,9 @@ export type SchoolOrderByWithRelationInput = {
   classrooms?: Prisma.ClassroomOrderByRelationAggregateInput
   subjects?: Prisma.SubjectOrderByRelationAggregateInput
   teacherAssignments?: Prisma.TeacherSubjectClassOrderByRelationAggregateInput
+  academicYears?: Prisma.AcademicYearOrderByRelationAggregateInput
+  terms?: Prisma.TermOrderByRelationAggregateInput
+  timetables?: Prisma.TimetablePeriodOrderByRelationAggregateInput
 }
 
 export type SchoolWhereUniqueInput = Prisma.AtLeast<{
@@ -212,6 +218,9 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   classrooms?: Prisma.ClassroomListRelationFilter
   subjects?: Prisma.SubjectListRelationFilter
   teacherAssignments?: Prisma.TeacherSubjectClassListRelationFilter
+  academicYears?: Prisma.AcademicYearListRelationFilter
+  terms?: Prisma.TermListRelationFilter
+  timetables?: Prisma.TimetablePeriodListRelationFilter
 }, "id">
 
 export type SchoolOrderByWithAggregationInput = {
@@ -246,6 +255,9 @@ export type SchoolCreateInput = {
   classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateInput = {
@@ -260,6 +272,9 @@ export type SchoolUncheckedCreateInput = {
   classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUpdateInput = {
@@ -274,6 +289,9 @@ export type SchoolUpdateInput = {
   classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateInput = {
@@ -288,6 +306,9 @@ export type SchoolUncheckedUpdateInput = {
   classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateManyInput = {
@@ -452,6 +473,48 @@ export type SchoolUpdateOneRequiredWithoutTeacherAssignmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutTeacherAssignmentsInput, Prisma.SchoolUpdateWithoutTeacherAssignmentsInput>, Prisma.SchoolUncheckedUpdateWithoutTeacherAssignmentsInput>
 }
 
+export type SchoolCreateNestedOneWithoutAcademicYearsInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutAcademicYearsInput, Prisma.SchoolUncheckedCreateWithoutAcademicYearsInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutAcademicYearsInput
+  connect?: Prisma.SchoolWhereUniqueInput
+}
+
+export type SchoolUpdateOneRequiredWithoutAcademicYearsNestedInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutAcademicYearsInput, Prisma.SchoolUncheckedCreateWithoutAcademicYearsInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutAcademicYearsInput
+  upsert?: Prisma.SchoolUpsertWithoutAcademicYearsInput
+  connect?: Prisma.SchoolWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutAcademicYearsInput, Prisma.SchoolUpdateWithoutAcademicYearsInput>, Prisma.SchoolUncheckedUpdateWithoutAcademicYearsInput>
+}
+
+export type SchoolCreateNestedOneWithoutTermsInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutTermsInput, Prisma.SchoolUncheckedCreateWithoutTermsInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutTermsInput
+  connect?: Prisma.SchoolWhereUniqueInput
+}
+
+export type SchoolUpdateOneRequiredWithoutTermsNestedInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutTermsInput, Prisma.SchoolUncheckedCreateWithoutTermsInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutTermsInput
+  upsert?: Prisma.SchoolUpsertWithoutTermsInput
+  connect?: Prisma.SchoolWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutTermsInput, Prisma.SchoolUpdateWithoutTermsInput>, Prisma.SchoolUncheckedUpdateWithoutTermsInput>
+}
+
+export type SchoolCreateNestedOneWithoutTimetablesInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutTimetablesInput, Prisma.SchoolUncheckedCreateWithoutTimetablesInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutTimetablesInput
+  connect?: Prisma.SchoolWhereUniqueInput
+}
+
+export type SchoolUpdateOneRequiredWithoutTimetablesNestedInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutTimetablesInput, Prisma.SchoolUncheckedCreateWithoutTimetablesInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutTimetablesInput
+  upsert?: Prisma.SchoolUpsertWithoutTimetablesInput
+  connect?: Prisma.SchoolWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutTimetablesInput, Prisma.SchoolUpdateWithoutTimetablesInput>, Prisma.SchoolUncheckedUpdateWithoutTimetablesInput>
+}
+
 export type SchoolCreateWithoutRolesInput = {
   id?: string
   name: string
@@ -463,6 +526,9 @@ export type SchoolCreateWithoutRolesInput = {
   classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutRolesInput = {
@@ -476,6 +542,9 @@ export type SchoolUncheckedCreateWithoutRolesInput = {
   classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutRolesInput = {
@@ -505,6 +574,9 @@ export type SchoolUpdateWithoutRolesInput = {
   classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutRolesInput = {
@@ -518,6 +590,9 @@ export type SchoolUncheckedUpdateWithoutRolesInput = {
   classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutUsersInput = {
@@ -531,6 +606,9 @@ export type SchoolCreateWithoutUsersInput = {
   classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutUsersInput = {
@@ -544,6 +622,9 @@ export type SchoolUncheckedCreateWithoutUsersInput = {
   classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutUsersInput = {
@@ -573,6 +654,9 @@ export type SchoolUpdateWithoutUsersInput = {
   classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutUsersInput = {
@@ -586,6 +670,9 @@ export type SchoolUncheckedUpdateWithoutUsersInput = {
   classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutStudentsInput = {
@@ -599,6 +686,9 @@ export type SchoolCreateWithoutStudentsInput = {
   classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutStudentsInput = {
@@ -612,6 +702,9 @@ export type SchoolUncheckedCreateWithoutStudentsInput = {
   classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutStudentsInput = {
@@ -641,6 +734,9 @@ export type SchoolUpdateWithoutStudentsInput = {
   classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutStudentsInput = {
@@ -654,6 +750,9 @@ export type SchoolUncheckedUpdateWithoutStudentsInput = {
   classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutTeachersInput = {
@@ -667,6 +766,9 @@ export type SchoolCreateWithoutTeachersInput = {
   classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutTeachersInput = {
@@ -680,6 +782,9 @@ export type SchoolUncheckedCreateWithoutTeachersInput = {
   classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutTeachersInput = {
@@ -709,6 +814,9 @@ export type SchoolUpdateWithoutTeachersInput = {
   classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutTeachersInput = {
@@ -722,6 +830,9 @@ export type SchoolUncheckedUpdateWithoutTeachersInput = {
   classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutClassroomsInput = {
@@ -735,6 +846,9 @@ export type SchoolCreateWithoutClassroomsInput = {
   teachers?: Prisma.TeacherCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutClassroomsInput = {
@@ -748,6 +862,9 @@ export type SchoolUncheckedCreateWithoutClassroomsInput = {
   teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutClassroomsInput = {
@@ -777,6 +894,9 @@ export type SchoolUpdateWithoutClassroomsInput = {
   teachers?: Prisma.TeacherUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutClassroomsInput = {
@@ -790,6 +910,9 @@ export type SchoolUncheckedUpdateWithoutClassroomsInput = {
   teachers?: Prisma.TeacherUncheckedUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutSubjectsInput = {
@@ -803,6 +926,9 @@ export type SchoolCreateWithoutSubjectsInput = {
   teachers?: Prisma.TeacherCreateNestedManyWithoutSchoolInput
   classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutSubjectsInput = {
@@ -816,6 +942,9 @@ export type SchoolUncheckedCreateWithoutSubjectsInput = {
   teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutSchoolInput
   classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutSubjectsInput = {
@@ -845,6 +974,9 @@ export type SchoolUpdateWithoutSubjectsInput = {
   teachers?: Prisma.TeacherUpdateManyWithoutSchoolNestedInput
   classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutSubjectsInput = {
@@ -858,6 +990,9 @@ export type SchoolUncheckedUpdateWithoutSubjectsInput = {
   teachers?: Prisma.TeacherUncheckedUpdateManyWithoutSchoolNestedInput
   classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
   teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutTeacherAssignmentsInput = {
@@ -871,6 +1006,9 @@ export type SchoolCreateWithoutTeacherAssignmentsInput = {
   teachers?: Prisma.TeacherCreateNestedManyWithoutSchoolInput
   classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutTeacherAssignmentsInput = {
@@ -884,6 +1022,9 @@ export type SchoolUncheckedCreateWithoutTeacherAssignmentsInput = {
   teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutSchoolInput
   classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
   subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutTeacherAssignmentsInput = {
@@ -913,6 +1054,9 @@ export type SchoolUpdateWithoutTeacherAssignmentsInput = {
   teachers?: Prisma.TeacherUpdateManyWithoutSchoolNestedInput
   classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutTeacherAssignmentsInput = {
@@ -926,6 +1070,249 @@ export type SchoolUncheckedUpdateWithoutTeacherAssignmentsInput = {
   teachers?: Prisma.TeacherUncheckedUpdateManyWithoutSchoolNestedInput
   classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
   subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolCreateWithoutAcademicYearsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserRoleCreateNestedManyWithoutSchoolInput
+  roles?: Prisma.RoleCreateNestedManyWithoutSchoolInput
+  students?: Prisma.StudentCreateNestedManyWithoutSchoolInput
+  teachers?: Prisma.TeacherCreateNestedManyWithoutSchoolInput
+  classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
+  teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolUncheckedCreateWithoutAcademicYearsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserRoleUncheckedCreateNestedManyWithoutSchoolInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutSchoolInput
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutSchoolInput
+  teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutSchoolInput
+  classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolCreateOrConnectWithoutAcademicYearsInput = {
+  where: Prisma.SchoolWhereUniqueInput
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutAcademicYearsInput, Prisma.SchoolUncheckedCreateWithoutAcademicYearsInput>
+}
+
+export type SchoolUpsertWithoutAcademicYearsInput = {
+  update: Prisma.XOR<Prisma.SchoolUpdateWithoutAcademicYearsInput, Prisma.SchoolUncheckedUpdateWithoutAcademicYearsInput>
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutAcademicYearsInput, Prisma.SchoolUncheckedCreateWithoutAcademicYearsInput>
+  where?: Prisma.SchoolWhereInput
+}
+
+export type SchoolUpdateToOneWithWhereWithoutAcademicYearsInput = {
+  where?: Prisma.SchoolWhereInput
+  data: Prisma.XOR<Prisma.SchoolUpdateWithoutAcademicYearsInput, Prisma.SchoolUncheckedUpdateWithoutAcademicYearsInput>
+}
+
+export type SchoolUpdateWithoutAcademicYearsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserRoleUpdateManyWithoutSchoolNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.StudentUpdateManyWithoutSchoolNestedInput
+  teachers?: Prisma.TeacherUpdateManyWithoutSchoolNestedInput
+  classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolUncheckedUpdateWithoutAcademicYearsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserRoleUncheckedUpdateManyWithoutSchoolNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.StudentUncheckedUpdateManyWithoutSchoolNestedInput
+  teachers?: Prisma.TeacherUncheckedUpdateManyWithoutSchoolNestedInput
+  classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolCreateWithoutTermsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserRoleCreateNestedManyWithoutSchoolInput
+  roles?: Prisma.RoleCreateNestedManyWithoutSchoolInput
+  students?: Prisma.StudentCreateNestedManyWithoutSchoolInput
+  teachers?: Prisma.TeacherCreateNestedManyWithoutSchoolInput
+  classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
+  teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolUncheckedCreateWithoutTermsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserRoleUncheckedCreateNestedManyWithoutSchoolInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutSchoolInput
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutSchoolInput
+  teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutSchoolInput
+  classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  timetables?: Prisma.TimetablePeriodUncheckedCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolCreateOrConnectWithoutTermsInput = {
+  where: Prisma.SchoolWhereUniqueInput
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutTermsInput, Prisma.SchoolUncheckedCreateWithoutTermsInput>
+}
+
+export type SchoolUpsertWithoutTermsInput = {
+  update: Prisma.XOR<Prisma.SchoolUpdateWithoutTermsInput, Prisma.SchoolUncheckedUpdateWithoutTermsInput>
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutTermsInput, Prisma.SchoolUncheckedCreateWithoutTermsInput>
+  where?: Prisma.SchoolWhereInput
+}
+
+export type SchoolUpdateToOneWithWhereWithoutTermsInput = {
+  where?: Prisma.SchoolWhereInput
+  data: Prisma.XOR<Prisma.SchoolUpdateWithoutTermsInput, Prisma.SchoolUncheckedUpdateWithoutTermsInput>
+}
+
+export type SchoolUpdateWithoutTermsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserRoleUpdateManyWithoutSchoolNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.StudentUpdateManyWithoutSchoolNestedInput
+  teachers?: Prisma.TeacherUpdateManyWithoutSchoolNestedInput
+  classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolUncheckedUpdateWithoutTermsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserRoleUncheckedUpdateManyWithoutSchoolNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.StudentUncheckedUpdateManyWithoutSchoolNestedInput
+  teachers?: Prisma.TeacherUncheckedUpdateManyWithoutSchoolNestedInput
+  classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  timetables?: Prisma.TimetablePeriodUncheckedUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolCreateWithoutTimetablesInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserRoleCreateNestedManyWithoutSchoolInput
+  roles?: Prisma.RoleCreateNestedManyWithoutSchoolInput
+  students?: Prisma.StudentCreateNestedManyWithoutSchoolInput
+  teachers?: Prisma.TeacherCreateNestedManyWithoutSchoolInput
+  classrooms?: Prisma.ClassroomCreateNestedManyWithoutSchoolInput
+  subjects?: Prisma.SubjectCreateNestedManyWithoutSchoolInput
+  teacherAssignments?: Prisma.TeacherSubjectClassCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolUncheckedCreateWithoutTimetablesInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserRoleUncheckedCreateNestedManyWithoutSchoolInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutSchoolInput
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutSchoolInput
+  teachers?: Prisma.TeacherUncheckedCreateNestedManyWithoutSchoolInput
+  classrooms?: Prisma.ClassroomUncheckedCreateNestedManyWithoutSchoolInput
+  subjects?: Prisma.SubjectUncheckedCreateNestedManyWithoutSchoolInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUncheckedCreateNestedManyWithoutSchoolInput
+  academicYears?: Prisma.AcademicYearUncheckedCreateNestedManyWithoutSchoolInput
+  terms?: Prisma.TermUncheckedCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolCreateOrConnectWithoutTimetablesInput = {
+  where: Prisma.SchoolWhereUniqueInput
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutTimetablesInput, Prisma.SchoolUncheckedCreateWithoutTimetablesInput>
+}
+
+export type SchoolUpsertWithoutTimetablesInput = {
+  update: Prisma.XOR<Prisma.SchoolUpdateWithoutTimetablesInput, Prisma.SchoolUncheckedUpdateWithoutTimetablesInput>
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutTimetablesInput, Prisma.SchoolUncheckedCreateWithoutTimetablesInput>
+  where?: Prisma.SchoolWhereInput
+}
+
+export type SchoolUpdateToOneWithWhereWithoutTimetablesInput = {
+  where?: Prisma.SchoolWhereInput
+  data: Prisma.XOR<Prisma.SchoolUpdateWithoutTimetablesInput, Prisma.SchoolUncheckedUpdateWithoutTimetablesInput>
+}
+
+export type SchoolUpdateWithoutTimetablesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserRoleUpdateManyWithoutSchoolNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.StudentUpdateManyWithoutSchoolNestedInput
+  teachers?: Prisma.TeacherUpdateManyWithoutSchoolNestedInput
+  classrooms?: Prisma.ClassroomUpdateManyWithoutSchoolNestedInput
+  subjects?: Prisma.SubjectUpdateManyWithoutSchoolNestedInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolUncheckedUpdateWithoutTimetablesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserRoleUncheckedUpdateManyWithoutSchoolNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.StudentUncheckedUpdateManyWithoutSchoolNestedInput
+  teachers?: Prisma.TeacherUncheckedUpdateManyWithoutSchoolNestedInput
+  classrooms?: Prisma.ClassroomUncheckedUpdateManyWithoutSchoolNestedInput
+  subjects?: Prisma.SubjectUncheckedUpdateManyWithoutSchoolNestedInput
+  teacherAssignments?: Prisma.TeacherSubjectClassUncheckedUpdateManyWithoutSchoolNestedInput
+  academicYears?: Prisma.AcademicYearUncheckedUpdateManyWithoutSchoolNestedInput
+  terms?: Prisma.TermUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 
@@ -941,6 +1328,9 @@ export type SchoolCountOutputType = {
   classrooms: number
   subjects: number
   teacherAssignments: number
+  academicYears: number
+  terms: number
+  timetables: number
 }
 
 export type SchoolCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -951,6 +1341,9 @@ export type SchoolCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   classrooms?: boolean | SchoolCountOutputTypeCountClassroomsArgs
   subjects?: boolean | SchoolCountOutputTypeCountSubjectsArgs
   teacherAssignments?: boolean | SchoolCountOutputTypeCountTeacherAssignmentsArgs
+  academicYears?: boolean | SchoolCountOutputTypeCountAcademicYearsArgs
+  terms?: boolean | SchoolCountOutputTypeCountTermsArgs
+  timetables?: boolean | SchoolCountOutputTypeCountTimetablesArgs
 }
 
 /**
@@ -1012,6 +1405,27 @@ export type SchoolCountOutputTypeCountTeacherAssignmentsArgs<ExtArgs extends run
   where?: Prisma.TeacherSubjectClassWhereInput
 }
 
+/**
+ * SchoolCountOutputType without action
+ */
+export type SchoolCountOutputTypeCountAcademicYearsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AcademicYearWhereInput
+}
+
+/**
+ * SchoolCountOutputType without action
+ */
+export type SchoolCountOutputTypeCountTermsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TermWhereInput
+}
+
+/**
+ * SchoolCountOutputType without action
+ */
+export type SchoolCountOutputTypeCountTimetablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TimetablePeriodWhereInput
+}
+
 
 export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1025,6 +1439,9 @@ export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   classrooms?: boolean | Prisma.School$classroomsArgs<ExtArgs>
   subjects?: boolean | Prisma.School$subjectsArgs<ExtArgs>
   teacherAssignments?: boolean | Prisma.School$teacherAssignmentsArgs<ExtArgs>
+  academicYears?: boolean | Prisma.School$academicYearsArgs<ExtArgs>
+  terms?: boolean | Prisma.School$termsArgs<ExtArgs>
+  timetables?: boolean | Prisma.School$timetablesArgs<ExtArgs>
   _count?: boolean | Prisma.SchoolCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["school"]>
 
@@ -1058,6 +1475,9 @@ export type SchoolInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   classrooms?: boolean | Prisma.School$classroomsArgs<ExtArgs>
   subjects?: boolean | Prisma.School$subjectsArgs<ExtArgs>
   teacherAssignments?: boolean | Prisma.School$teacherAssignmentsArgs<ExtArgs>
+  academicYears?: boolean | Prisma.School$academicYearsArgs<ExtArgs>
+  terms?: boolean | Prisma.School$termsArgs<ExtArgs>
+  timetables?: boolean | Prisma.School$timetablesArgs<ExtArgs>
   _count?: boolean | Prisma.SchoolCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SchoolIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1073,6 +1493,9 @@ export type $SchoolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     classrooms: Prisma.$ClassroomPayload<ExtArgs>[]
     subjects: Prisma.$SubjectPayload<ExtArgs>[]
     teacherAssignments: Prisma.$TeacherSubjectClassPayload<ExtArgs>[]
+    academicYears: Prisma.$AcademicYearPayload<ExtArgs>[]
+    terms: Prisma.$TermPayload<ExtArgs>[]
+    timetables: Prisma.$TimetablePeriodPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1480,6 +1903,9 @@ export interface Prisma__SchoolClient<T, Null = never, ExtArgs extends runtime.T
   classrooms<T extends Prisma.School$classroomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$classroomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassroomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subjects<T extends Prisma.School$subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teacherAssignments<T extends Prisma.School$teacherAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$teacherAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeacherSubjectClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  academicYears<T extends Prisma.School$academicYearsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$academicYearsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AcademicYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  terms<T extends Prisma.School$termsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$termsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TermPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  timetables<T extends Prisma.School$timetablesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$timetablesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimetablePeriodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2071,6 +2497,78 @@ export type School$teacherAssignmentsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.TeacherSubjectClassScalarFieldEnum | Prisma.TeacherSubjectClassScalarFieldEnum[]
+}
+
+/**
+ * School.academicYears
+ */
+export type School$academicYearsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AcademicYear
+   */
+  select?: Prisma.AcademicYearSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AcademicYear
+   */
+  omit?: Prisma.AcademicYearOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AcademicYearInclude<ExtArgs> | null
+  where?: Prisma.AcademicYearWhereInput
+  orderBy?: Prisma.AcademicYearOrderByWithRelationInput | Prisma.AcademicYearOrderByWithRelationInput[]
+  cursor?: Prisma.AcademicYearWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AcademicYearScalarFieldEnum | Prisma.AcademicYearScalarFieldEnum[]
+}
+
+/**
+ * School.terms
+ */
+export type School$termsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Term
+   */
+  select?: Prisma.TermSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Term
+   */
+  omit?: Prisma.TermOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TermInclude<ExtArgs> | null
+  where?: Prisma.TermWhereInput
+  orderBy?: Prisma.TermOrderByWithRelationInput | Prisma.TermOrderByWithRelationInput[]
+  cursor?: Prisma.TermWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TermScalarFieldEnum | Prisma.TermScalarFieldEnum[]
+}
+
+/**
+ * School.timetables
+ */
+export type School$timetablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TimetablePeriod
+   */
+  select?: Prisma.TimetablePeriodSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TimetablePeriod
+   */
+  omit?: Prisma.TimetablePeriodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TimetablePeriodInclude<ExtArgs> | null
+  where?: Prisma.TimetablePeriodWhereInput
+  orderBy?: Prisma.TimetablePeriodOrderByWithRelationInput | Prisma.TimetablePeriodOrderByWithRelationInput[]
+  cursor?: Prisma.TimetablePeriodWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TimetablePeriodScalarFieldEnum | Prisma.TimetablePeriodScalarFieldEnum[]
 }
 
 /**

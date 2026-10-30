@@ -72,3 +72,18 @@ export type Subject = Prisma.SubjectModel
  * 
  */
 export type TeacherSubjectClass = Prisma.TeacherSubjectClassModel
+/**
+ * Model AcademicYear
+ * 
+ */
+export type AcademicYear = Prisma.AcademicYearModel
+/**
+ * Model Term
+ * 
+ */
+export type Term = Prisma.TermModel
+/**
+ * Model TimetablePeriod
+ * 
+ */
+export type TimetablePeriod = Prisma.TimetablePeriodModel

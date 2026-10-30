@@ -37,3 +37,20 @@ export type AuthResult = {
   user: AuthUser;
   tokens: TokenPair;
 };
+
+// ─── Current User Profile ─────────────────────────────────────────────────────
+
+export type UserRoleDetail = {
+  role: string;
+  schoolId: string | null;
+  schoolName: string | null;
+  permissions: string[];
+};
+
+export type UserProfileResponse = {
+  id: string;
+  email: string;
+  createdAt: Date;
+  roles: UserRoleDetail[];
+};
+

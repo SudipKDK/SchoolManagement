@@ -37,6 +37,43 @@ export async function findUserById(id: string): Promise<User | null> {
 }
 
 /**
+ * Find a user by ID including their roles, assigned schools, and permissions.
+ */
+export async function findUserWithRoles(userId: string) {
+  return prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      id: true,
+      email: true,
+      createdAt: true,
+      roles: {
+        select: {
+          id: true,
+          schoolId: true,
+          school: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          role: {
+            select: {
+              id: true,
+              name: true,
+              permissions: {
+                select: {
+                  permission: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+/**
  * Create a new user.
  * Accepts only the fields needed at registration time.
  * The passwordHash is pre-computed by the Service (hashing is business logic).

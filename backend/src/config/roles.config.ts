@@ -23,10 +23,18 @@ export const DEFAULT_ROLES: Record<string, PermissionString[]> = {
   // Admins get complete control over everything
   SCHOOL_ADMIN: getAllPermissions(),
 
-  // Teachers can manage students, attendance, and grades, but cannot delete students
+  // Teachers can manage students, attendance, grades, view academic structures and schedules
   TEACHER: [
     "student.read",
     "student.list",
+    "classroom.read",
+    "classroom.list",
+    "subject.read",
+    "subject.list",
+    "academicYear.read",
+    "academicYear.list",
+    "timetable.read",
+    "timetable.list",
     "attendance.read",
     "attendance.list",
     "attendance.create",
@@ -39,8 +47,12 @@ export const DEFAULT_ROLES: Record<string, PermissionString[]> = {
     "announcement.list",
   ],
 
-  // Students can only read data related to themselves (this will be fine-tuned later)
+  // Students can only read data related to themselves
   STUDENT: [
+    "classroom.read",
+    "subject.read",
+    "academicYear.read",
+    "timetable.read",
     "attendance.read",
     "grade.read",
     "announcement.read",
@@ -50,6 +62,10 @@ export const DEFAULT_ROLES: Record<string, PermissionString[]> = {
   // Guardians can view their dependents' data
   GUARDIAN: [
     "student.read",
+    "classroom.read",
+    "subject.read",
+    "academicYear.read",
+    "timetable.read",
     "attendance.read",
     "grade.read",
     "fee.read",

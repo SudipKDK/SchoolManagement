@@ -43,3 +43,43 @@ export const loginHandler = catchAsync(async (req: Request, res: Response) => {
     accessToken: result.tokens.accessToken,
   });
 });
+
+// Refresh Token Handler
+export const refreshHandler = catchAsync(async (req: Request, res: Response) => {
+  const rawToken = (req.cookies?.refreshToken as string | undefined) || req.body?.refreshToken;
+  const tokens = await authService.refresh(rawToken);
+
+  res.cookie('refreshToken', tokens.refreshToken, {
+    httpOnly: true,
+    secure: env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+
+  res.status(200).json({
+    accessToken: tokens.accessToken,
+  });
+});
+
+// Logout Handler
+export const logoutHandler = catchAsync(async (req: Request, res: Response) => {
+  const rawToken = (req.cookies?.refreshToken as string | undefined) || req.body?.refreshToken;
+  await authService.logout(rawToken);
+
+  res.clearCookie('refreshToken', {
+    httpOnly: true,
+    secure: env.NODE_ENV === 'production',
+    sameSite: 'strict',
+  });
+
+  res.status(200).json({
+    message: 'Logged out successfully',
+  });
+});
+
+// Get Current User Profile Handler
+export const getMeHandler = catchAsync(async (req: Request, res: Response) => {
+  const user = await authService.getMe(req.user!.id);
+  res.status(200).json({ user });
+});
+
